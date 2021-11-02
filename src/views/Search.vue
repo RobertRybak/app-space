@@ -10,7 +10,6 @@
         v-model="searchValue"
         @input="heandlerInput"
       />
-
       <ul>
         <li v-for="item in results" :key="item.data[0].nasa_id">
           <p>{{ item.data[0].description }}</p>
@@ -75,3 +74,4 @@ export default {
   border-bottom: 1px solid black;
 }
 </style>
+
