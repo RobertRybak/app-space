@@ -1,21 +1,9 @@
 /* eslint-disable quotes */
+/* eslint-disable quotes */
 <template>
   <div class="wrapper">
-    <div class="search">
-      <label for="search">Search</label>
-      <input
-        id="search"
-        name="search"
-        type="text"
-        v-model="searchValue"
-        @input="heandlerInput"
-      />
-      <ul>
-        <li v-for="item in results" :key="item.data[0].nasa_id">
-          <p>{{ item.data[0].description }}</p>
-        </li>
-      </ul>
-    </div>
+    <Claim />
+    <SearchInput />
   </div>
 </template>
 
@@ -25,11 +13,23 @@ import axios from "axios";
 // eslint-disable-next-line quotes
 import debounce from "lodash.debounce";
 
+// eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line quotes
+import Claim from "@/components/Claim.vue";
+
+// eslint-disable-next-line quotes
+import SearchInput from "@/components/SearchInput.vue";
+
 // eslint-disable-next-line quotes
 const API = "http://images-api.nasa.gov/search";
 export default {
   // eslint-disable-next-line quotes
   name: "Search",
+  // eslint-disable-next-line quotes
+  components: {
+    Claim,
+    SearchInput,
+  },
   data() {
     return {
       // eslint-disable-next-line quotes
@@ -38,6 +38,7 @@ export default {
     };
   },
   methods: {
+    // eslint-disable-next-line func-names
     heandlerInput: debounce(function () {
       axios
         .get(`${API}?q=${this.searchValue}&media_type=image`)
@@ -54,24 +55,16 @@ export default {
 <style lang="scss" scoped>
 .wrapper {
   width: 100%;
+  height: 100vh;
   display: flex;
   padding: 30px;
   margin: 0;
   flex-direction: column;
   align-items: center;
-}
-.search {
-  display: flex;
-  flex-direction: column;
-  width: 250px;
-}
-.search label {
-  font-family: Montserrot, sans-serif;
-}
-.search input {
-  height: 30px;
-  border: 0;
-  border-bottom: 1px solid black;
+  justify-content: center;
+  background-image: url("../assets/heroimage.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 80% 0;
 }
 </style>
-
