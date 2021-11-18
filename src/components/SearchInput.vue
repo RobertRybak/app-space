@@ -1,5 +1,11 @@
 <template>
-  <input id="search" name="search" :value="value" @input="handleChange" />
+  <input
+    id="search"
+    name="search"
+    :class="{ dark: dark }"
+    :value="value"
+    @input="handleChange"
+  />
 </template>
 <script>
 export default {
@@ -9,6 +15,10 @@ export default {
     value: {
       type: String,
       required: true,
+    },
+    dark: {
+      type: Boolean,
+      default: true,
     },
   },
   methods: {
@@ -45,6 +55,13 @@ input {
 
   @media (min-width: 1024) {
     font-weight: 400;
+  }
+}
+.dark {
+  color: #1e3d4a;
+  border-bottom-color: #1e3d4a;
+  &:focus {
+    box-shadow: 0 10px 20px -8px rgba(#1e3d4a, 0.2);
   }
 }
 </style>
